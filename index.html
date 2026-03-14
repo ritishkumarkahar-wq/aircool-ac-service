@@ -21,7 +21,6 @@ overflow-x:hidden;
 }
 
 /* INTRO */
-
 .intro{
 position:fixed;
 top:0;
@@ -50,11 +49,12 @@ font-size:32px;
 opacity:0;
 animation:fadeText 1.5s ease forwards;
 animation-delay:1s;
+text-align:center;
 }
 
 @keyframes logoZoom{
 0%{
-transform:scale(2.3);
+transform:scale(2.2);
 opacity:0;
 }
 40%{
@@ -147,8 +147,19 @@ transform:translateX(-50%);
 }
 }
 
-/* HEADER */
+/* TOP BAR */
+.top-bar{
+background:#033c5c;
+color:white;
+padding:10px 20px;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:10px;
+font-size:14px;
+}
 
+/* HEADER */
 header{
 background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url("ac-bg.jpg");
 background-size:cover;
@@ -197,7 +208,6 @@ transform:scale(1.06);
 }
 
 /* NAVBAR */
-
 nav{
 background:#0a7cc2;
 text-align:center;
@@ -211,7 +221,7 @@ box-shadow:0 2px 8px rgba(0,0,0,0.1);
 nav a{
 color:white;
 text-decoration:none;
-margin:0 18px;
+margin:0 15px;
 font-weight:bold;
 display:inline-block;
 transition:0.3s;
@@ -222,8 +232,7 @@ transform:translateY(-3px);
 text-decoration:underline;
 }
 
-/* COMMON SECTION */
-
+/* COMMON */
 .container{
 width:90%;
 max-width:1100px;
@@ -239,8 +248,6 @@ margin-bottom:25px;
 font-size:30px;
 }
 
-/* ABOUT */
-
 .about-text{
 text-align:center;
 max-width:800px;
@@ -250,7 +257,6 @@ line-height:1.8;
 }
 
 /* SERVICES */
-
 .services{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -274,30 +280,85 @@ box-shadow:0 10px 22px rgba(0,0,0,0.16);
 background:#eef8ff;
 }
 
-/* WHY CHOOSE US */
-
-.features{
+/* WHY US */
+.pro-boxes{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 margin-top:25px;
 }
 
-.feature-box{
+.pro-box{
 background:white;
-padding:20px;
+padding:22px;
 border-radius:12px;
-box-shadow:0 4px 15px rgba(0,0,0,0.08);
+box-shadow:0 4px 14px rgba(0,0,0,0.08);
 text-align:center;
 transition:0.3s;
 }
 
-.feature-box:hover{
+.pro-box:hover{
 transform:translateY(-6px);
+box-shadow:0 10px 22px rgba(0,0,0,0.14);
+}
+
+.pro-box h3{
+color:#0a7cc2;
+margin-bottom:10px;
+}
+
+/* FEEDBACK */
+.reviews{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:25px;
+}
+
+.review-box{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 4px 14px rgba(0,0,0,0.08);
+text-align:center;
+transition:0.3s;
+}
+
+.review-box:hover{
+transform:translateY(-6px);
+box-shadow:0 10px 22px rgba(0,0,0,0.14);
+}
+
+.review-box p{
+margin-bottom:10px;
+line-height:1.6;
+}
+
+/* SERVICE AREAS */
+.area-list{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+margin-top:20px;
+}
+
+.area-list span{
+background:white;
+padding:12px 18px;
+border-radius:30px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+font-weight:bold;
+transition:0.3s;
+}
+
+.area-list span:hover{
+background:#0a7cc2;
+color:white;
+transform:scale(1.05);
 }
 
 /* GALLERY */
-
 .gallery{
 overflow:hidden;
 padding:10px 0;
@@ -342,7 +403,6 @@ box-shadow:0 8px 18px rgba(0,0,0,0.25);
 }
 
 /* POPUP */
-
 .popup{
 display:none;
 position:fixed;
@@ -365,8 +425,41 @@ box-shadow:0 6px 20px rgba(0,0,0,0.35);
 animation:zoomIn 0.4s ease;
 }
 
-/* CONTACT */
+/* CTA */
+.cta-section{
+background:linear-gradient(135deg,#0a7cc2,#033c5c);
+color:white;
+text-align:center;
+padding:50px 20px;
+}
 
+.cta-section h2{
+color:white;
+margin-bottom:15px;
+}
+
+.cta-section p{
+margin-bottom:20px;
+font-size:17px;
+}
+
+.cta-section a{
+display:inline-block;
+background:#25D366;
+color:white;
+padding:12px 24px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.cta-section a:hover{
+transform:scale(1.08);
+background:#1ebe5d;
+}
+
+/* CONTACT */
 .contact{
 background:#0a7cc2;
 color:white;
@@ -384,7 +477,6 @@ font-size:17px;
 }
 
 /* FORM */
-
 form{
 margin-top:25px;
 }
@@ -424,7 +516,6 @@ transform:scale(1.06);
 }
 
 /* FOOTER */
-
 footer{
 background:#033c5c;
 color:white;
@@ -472,8 +563,7 @@ border-top:1px solid rgba(255,255,255,0.25);
 margin-top:10px;
 }
 
-/* WHATSAPP BUTTON */
-
+/* WHATSAPP */
 .whatsapp-btn{
 position:fixed;
 bottom:20px;
@@ -496,7 +586,6 @@ background:#1ebe5d;
 }
 
 /* RESPONSIVE */
-
 @media(max-width:768px){
 header h1{
 font-size:30px;
@@ -504,7 +593,7 @@ font-size:30px;
 
 nav a{
 display:inline-block;
-margin:8px 10px;
+margin:8px 8px;
 }
 
 h2{
@@ -515,6 +604,11 @@ font-size:26px;
 width:220px;
 height:160px;
 }
+
+.top-bar{
+flex-direction:column;
+text-align:center;
+}
 }
 </style>
 </head>
@@ -524,6 +618,13 @@ height:160px;
 <div class="intro">
     <img src="logo.png" alt="Air Cool AC Service Logo">
     <h1>Air Cool AC Service</h1>
+</div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <span>📞 Call Now: 9830292550</span>
+    <span>⏰ Open: 8 AM - 10 PM</span>
+    <span>📍 Kolkata AC Service</span>
 </div>
 
 <!-- HEADER -->
@@ -538,6 +639,8 @@ height:160px;
 <nav>
     <a href="#about">About</a>
     <a href="#services">Services</a>
+    <a href="#why-us">Why Us</a>
+    <a href="#feedback">Feedback</a>
     <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
 </nav>
@@ -550,6 +653,29 @@ height:160px;
         We specialize in AC installation, repair, gas charging, servicing and maintenance for Split AC and Window AC.
         Our goal is to deliver fast, honest and professional AC service at a reasonable price.
     </p>
+</section>
+
+<!-- WHY US -->
+<section class="container" id="why-us">
+    <h2>Why Choose Us</h2>
+    <div class="pro-boxes">
+        <div class="pro-box">
+            <h3>Fast Service</h3>
+            <p>Same day AC service for home, office and shop.</p>
+        </div>
+        <div class="pro-box">
+            <h3>Affordable Price</h3>
+            <p>Reasonable rate with honest and clear pricing.</p>
+        </div>
+        <div class="pro-box">
+            <h3>Experienced Technician</h3>
+            <p>Professional AC repair and installation support.</p>
+        </div>
+        <div class="pro-box">
+            <h3>Trusted Work</h3>
+            <p>Quality service with customer satisfaction.</p>
+        </div>
+    </div>
 </section>
 
 <!-- SERVICES -->
@@ -565,26 +691,38 @@ height:160px;
     </div>
 </section>
 
-<!-- WHY CHOOSE US -->
-<section class="container">
-    <h2>Why Choose Us</h2>
-    <div class="features">
-        <div class="feature-box">
-            <h3>Fast Service</h3>
-            <p>Quick response for home, office and shop AC service.</p>
+<!-- FEEDBACK -->
+<section class="container" id="feedback">
+    <h2>Customer Feedback</h2>
+    <div class="reviews">
+        <div class="review-box">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Very fast AC repair service. Good behavior and clean work."</p>
+            <strong>- Rahul Sharma</strong>
         </div>
-        <div class="feature-box">
-            <h3>Affordable Price</h3>
-            <p>Budget-friendly AC repair and installation service.</p>
+        <div class="review-box">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Affordable price and excellent split AC installation."</p>
+            <strong>- Priya Das</strong>
         </div>
-        <div class="feature-box">
-            <h3>Trusted Work</h3>
-            <p>Experienced team for professional and neat work.</p>
+        <div class="review-box">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Quick response and proper gas charging service."</p>
+            <strong>- Amit Gupta</strong>
         </div>
-        <div class="feature-box">
-            <h3>Customer Support</h3>
-            <p>Friendly support and easy WhatsApp booking.</p>
-        </div>
+    </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section class="container" id="areas">
+    <h2>Service Areas</h2>
+    <div class="area-list">
+        <span>Shyambazar</span>
+        <span>Bagbazar</span>
+        <span>Sovabazar</span>
+        <span>Maniktala</span>
+        <span>College Street</span>
+        <span>Central Kolkata</span>
     </div>
 </section>
 
@@ -603,6 +741,13 @@ height:160px;
             <img src="work4.jpg" onclick="openImage(this)" draggable="false" alt="">
         </div>
     </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Need AC Repair or Installation Today?</h2>
+    <p>Call now for fast and trusted AC service in Kolkata.</p>
+    <a href="tel:9830292550">Call Now</a>
 </section>
 
 <!-- CONTACT -->
@@ -630,7 +775,7 @@ height:160px;
     </form>
 </section>
 
-<!-- IMAGE POPUP -->
+<!-- POPUP -->
 <div class="popup" id="imagePopup" onclick="closeImage()">
     <img id="popupImg" alt="">
 </div>
@@ -647,6 +792,7 @@ height:160px;
             <h3>Quick Links</h3>
             <p><a href="#about">About Us</a></p>
             <p><a href="#services">Services</a></p>
+            <p><a href="#feedback">Feedback</a></p>
             <p><a href="#gallery">Gallery</a></p>
             <p><a href="#contact">Contact</a></p>
         </div>
@@ -664,7 +810,7 @@ height:160px;
     </div>
 </footer>
 
-<!-- FLOATING WHATSAPP -->
+<!-- WHATSAPP -->
 <a href="https://wa.me/919830292550" target="_blank" class="whatsapp-btn">Chat on WhatsApp</a>
 
 <script>
