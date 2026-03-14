@@ -89,19 +89,35 @@ box-shadow:0 3px 10px rgba(0,0,0,0.1);
 font-weight:bold;
 }
 
-/* GALLERY */
+/* MOVING GALLERY */
 
 .gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
+overflow:hidden;
 margin-top:30px;
 }
 
+.gallery-track{
+display:flex;
+gap:20px;
+animation:scrollGallery 15s linear infinite;
+}
+
 .gallery img{
-width:100%;
+width:250px;
 border-radius:10px;
 box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+@keyframes scrollGallery{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
 }
 
 /* CONTACT */
@@ -211,10 +227,19 @@ We specialize in AC installation, repair, gas charging, servicing and maintenanc
 
 <div class="gallery">
 
+<div class="gallery-track">
+
 <img src="work1.jpg">
 <img src="work2.jpg">
 <img src="work3.jpg">
 <img src="work4.jpg">
+
+<img src="work1.jpg">
+<img src="work2.jpg">
+<img src="work3.jpg">
+<img src="work4.jpg">
+
+</div>
 
 </div>
 
