@@ -95,6 +95,11 @@ font-weight:bold;
 overflow:hidden;
 padding:10px 0;
 position:relative;
+cursor:grab;
+}
+
+.gallery:active{
+cursor:grabbing;
 }
 
 .gallery-track{
@@ -102,6 +107,14 @@ display:flex;
 gap:20px;
 width:max-content;
 animation:scrollGallery 25s linear infinite;
+}
+
+.gallery:hover .gallery-track{
+animation-play-state:paused;
+}
+
+.gallery.paused .gallery-track{
+animation-play-state:paused;
 }
 
 .gallery img{
@@ -113,21 +126,44 @@ cursor:pointer;
 box-shadow:0 3px 10px rgba(0,0,0,0.2);
 transition:0.3s;
 flex-shrink:0;
+user-select:none;
+pointer-events:auto;
 }
 
 .gallery img:hover{
 transform:scale(1.05);
 }
-@keyframes scrollGallery{
 
+@keyframes scrollGallery{
 0%{
 transform:translateX(0);
 }
-
 100%{
 transform:translateX(-50%);
 }
+}
 
+/* IMAGE POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+justify-content:center;
+align-items:center;
+z-index:9999;
+padding:20px;
+}
+
+.popup img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.4);
 }
 
 /* CONTACT */
@@ -235,16 +271,16 @@ We specialize in AC installation, repair, gas charging, servicing and maintenanc
 
 <h2>Our AC Work Gallery</h2>
 
-<div class="gallery">
-    <div class="gallery-track">
-        <img src="work1.jpg" onclick="openImage(this)">
-        <img src="work2.jpg" onclick="openImage(this)">
-        <img src="work3.jpg" onclick="openImage(this)">
-        <img src="work4.jpg" onclick="openImage(this)">
-        <img src="work1.jpg" onclick="openImage(this)">
-        <img src="work2.jpg" onclick="openImage(this)">
-        <img src="work3.jpg" onclick="openImage(this)">
-        <img src="work4.jpg" onclick="openImage(this)">
+<div class="gallery" id="galleryBox">
+    <div class="gallery-track" id="galleryTrack">
+        <img src="work1.jpg" onclick="openImage(this)" draggable="false">
+        <img src="work2.jpg" onclick="openImage(this)" draggable="false">
+        <img src="work3.jpg" onclick="openImage(this)" draggable="false">
+        <img src="work4.jpg" onclick="openImage(this)" draggable="false">
+        <img src="work1.jpg" onclick="openImage(this)" draggable="false">
+        <img src="work2.jpg" onclick="openImage(this)" draggable="false">
+        <img src="work3.jpg" onclick="openImage(this)" draggable="false">
+        <img src="work4.jpg" onclick="openImage(this)" draggable="false">
     </div>
 </div>
     
@@ -288,44 +324,33 @@ width="100%" height="300" style="border:0;">
 </section>
   
 <div class="popup" id="imagePopup" onclick="closeImage()">
-<img id="popupImg">
+    <img id="popupImg">
 </div>
   
 <footer>
 
 <div style="max-width:1000px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-between;text-align:left;padding:20px;">
 
-<!-- About -->
-
 <div style="flex:1;min-width:200px;margin:10px;">
 <h3>Air Cool AC Service</h3>
 <p>Professional AC installation, repair, gas charging and servicing for homes and offices.</p>
 </div>
 
-<!-- Quick Links -->
-
 <div style="flex:1;min-width:200px;margin:10px;">
 <h3>Quick Links</h3>
 
 <p><a href="#about" style="color:white;text-decoration:none;">About Us</a></p>
-
 <p><a href="#services" style="color:white;text-decoration:none;">Services</a></p>
-
 <p><a href="#gallery" style="color:white;text-decoration:none;">Gallery</a></p>
-
 <p><a href="#contact" style="color:white;text-decoration:none;">Contact</a></p>
 
 </div>
-
-<!-- Contact -->
 
 <div style="flex:1;min-width:200px;margin:10px;">
 <h3>Contact Info</h3>
 
 <p>📞 9830292550</p>
-
 <p>📍 32, B, Radha Kanto Jew Street, Kolkata - 700004</p>
-
 <p>AC Service for Homes & Offices</p>
 
 </div>
@@ -339,8 +364,6 @@ width="100%" height="300" style="border:0;">
 </p>
 
 </footer>
-
-<!-- WhatsApp Button -->
 
 <a href="https://wa.me/919830292550" target="_blank" 
 style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;
@@ -369,16 +392,57 @@ window.open(url, "_blank");
 
 }
 
-  // Image popup functions
+// Image popup functions
 function openImage(img){
-    document.getElementById("imagePopup").style.display="flex";
+    document.getElementById("imagePopup").style.display = "flex";
     document.getElementById("popupImg").src = img.src;
 }
 
 function closeImage(){
-    document.getElementById("imagePopup").style.display="none";
+    document.getElementById("imagePopup").style.display = "none";
 }
-  
+
+// Gallery drag + pause
+const gallery = document.getElementById("galleryBox");
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+gallery.addEventListener("mousedown", (e) => {
+    isDown = true;
+    gallery.classList.add("paused");
+    startX = e.pageX - gallery.offsetLeft;
+    scrollLeft = gallery.scrollLeft;
+});
+
+gallery.addEventListener("mouseleave", () => {
+    isDown = false;
+    gallery.classList.remove("paused");
+});
+
+gallery.addEventListener("mouseup", () => {
+    isDown = false;
+    gallery.classList.remove("paused");
+});
+
+gallery.addEventListener("mousemove", (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - gallery.offsetLeft;
+    const walk = (x - startX) * 2;
+    gallery.scrollLeft = scrollLeft - walk;
+});
+
+// Touch support for mobile
+gallery.addEventListener("touchstart", () => {
+    gallery.classList.add("paused");
+});
+
+gallery.addEventListener("touchend", () => {
+    gallery.classList.remove("paused");
+});
+
 </script>
 
 </body>
