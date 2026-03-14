@@ -89,6 +89,21 @@ box-shadow:0 3px 10px rgba(0,0,0,0.1);
 font-weight:bold;
 }
 
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
 /* CONTACT */
 
 .contact{
@@ -153,9 +168,8 @@ padding:15px;
 <nav>
 
 <a href="#about">About</a>
-
 <a href="#services">Services</a>
-
+<a href="#gallery">Gallery</a>
 <a href="#contact">Contact</a>
 
 </nav>
@@ -181,16 +195,26 @@ We specialize in AC installation, repair, gas charging, servicing and maintenanc
 <div class="services">
 
 <div class="service-box">Split AC Installation</div>
-
 <div class="service-box">Window AC Installation</div>
-
 <div class="service-box">AC Repair</div>
-
 <div class="service-box">Gas Charging</div>
-
 <div class="service-box">AC Servicing</div>
-
 <div class="service-box">AC Shifting</div>
+
+</div>
+
+</section>
+
+<section class="container" id="gallery">
+
+<h2>Our AC Work Gallery</h2>
+
+<div class="gallery">
+
+<img src="work1.jpg">
+<img src="work2.jpg">
+<img src="work3.jpg">
+<img src="work4.jpg">
 
 </div>
 
@@ -206,14 +230,14 @@ We specialize in AC installation, repair, gas charging, servicing and maintenanc
 
 <p>Service available for Homes, Offices & Shops</p>
 
+<br>
+
 <!-- Google Map -->
 
 <iframe 
 src="https://maps.google.com/maps?q=32%20B%20Radha%20Kanto%20Jew%20Street%20Kolkata%20700004&t=&z=15&ie=UTF8&iwloc=&output=embed"
 width="100%" height="300" style="border:0;">
 </iframe>
-
-<!-- Booking Form -->
 
 <h2>Book AC Service</h2>
 
@@ -230,6 +254,22 @@ width="100%" height="300" style="border:0;">
 <button type="submit">Book Service</button>
 
 </form>
+
+</section>
+
+<footer>
+
+© 2026 Air Cool AC Service | All Rights Reserved
+
+</footer>
+
+<!-- WhatsApp Button -->
+
+<a href="https://wa.me/919830292550" target="_blank" 
+style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;
+padding:12px 18px;border-radius:30px;text-decoration:none;font-weight:bold;">
+Chat on WhatsApp
+</a>
 
 <script>
 
@@ -253,21 +293,6 @@ window.open(url, "_blank");
 }
 
 </script>
-</section>
-
-<footer>
-
-© 2026 Air Cool AC Service | All Rights Reserved
-
-</footer>
-
-<!-- WhatsApp Button -->
-
-<a href="https://wa.me/919830292550" target="_blank" 
-style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;
-padding:12px 18px;border-radius:30px;text-decoration:none;font-weight:bold;">
-Chat on WhatsApp
-</a>
 
 </body>
 </html>
