@@ -217,20 +217,42 @@ width="100%" height="300" style="border:0;">
 
 <h2>Book AC Service</h2>
 
-<form>
+<form onsubmit="sendToWhatsApp(); return false;">
 
-<input type="text" placeholder="Your Name" required>
+<input type="text" id="name" placeholder="Your Name" required>
 
-<input type="tel" placeholder="Phone Number" required>
+<input type="tel" id="phone" placeholder="Phone Number" required>
 
-<input type="text" placeholder="Address">
+<input type="text" id="address" placeholder="Address">
 
-<textarea placeholder="Service Problem"></textarea>
+<textarea id="problem" placeholder="AC Problem"></textarea>
 
 <button type="submit">Book Service</button>
 
 </form>
 
+<script>
+
+function sendToWhatsApp(){
+
+var name = document.getElementById("name").value;
+var phone = document.getElementById("phone").value;
+var address = document.getElementById("address").value;
+var problem = document.getElementById("problem").value;
+
+var message = "AC Service Booking:%0A"
++ "Name: " + name + "%0A"
++ "Phone: " + phone + "%0A"
++ "Address: " + address + "%0A"
++ "Problem: " + problem;
+
+var url = "https://wa.me/919830292550?text=" + message;
+
+window.open(url, "_blank");
+
+}
+
+</script>
 </section>
 
 <footer>
