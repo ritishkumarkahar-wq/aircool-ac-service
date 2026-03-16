@@ -15,9 +15,112 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#f4f8fb;
+background:#eef7fd;
 color:#222;
 overflow-x:hidden;
+position:relative;
+}
+
+/* FULL PAGE ANIMATED BACKGROUND */
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 20%, rgba(10,124,194,0.10), transparent 22%),
+radial-gradient(circle at 80% 30%, rgba(37,211,102,0.08), transparent 18%),
+radial-gradient(circle at 50% 80%, rgba(10,124,194,0.08), transparent 24%),
+linear-gradient(135deg,#f4fbff,#e9f6ff,#f7fcff);
+z-index:-4;
+}
+
+body::after{
+content:"";
+position:fixed;
+top:0;
+left:-20%;
+width:140%;
+height:100%;
+background:
+repeating-linear-gradient(
+90deg,
+rgba(10,124,194,0.02) 0px,
+rgba(10,124,194,0.02) 2px,
+transparent 2px,
+transparent 140px
+);
+animation:bgMove 20s linear infinite;
+z-index:-3;
+opacity:0.8;
+}
+
+.bg-air{
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:-2;
+overflow:hidden;
+}
+
+.bg-air span{
+position:absolute;
+display:block;
+width:340px;
+height:34px;
+border-radius:50%;
+background:linear-gradient(to right, rgba(10,124,194,0.00), rgba(10,124,194,0.14), rgba(10,124,194,0.00));
+filter:blur(1px);
+animation:floatAir 13s linear infinite;
+opacity:0.55;
+}
+
+.bg-air span:nth-child(1){ top:12%; left:-25%; animation-delay:0s; }
+.bg-air span:nth-child(2){ top:28%; left:-35%; animation-delay:2s; }
+.bg-air span:nth-child(3){ top:44%; left:-20%; animation-delay:4s; }
+.bg-air span:nth-child(4){ top:60%; left:-30%; animation-delay:1s; }
+.bg-air span:nth-child(5){ top:76%; left:-22%; animation-delay:5s; }
+.bg-air span:nth-child(6){ top:88%; left:-28%; animation-delay:7s; }
+
+.bg-icons{
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:-1;
+overflow:hidden;
+}
+
+.bg-icons div{
+position:absolute;
+font-size:34px;
+opacity:0.10;
+animation:floatIcon 18s ease-in-out infinite;
+}
+
+.bg-icons div:nth-child(1){ top:8%; left:6%; animation-delay:0s; }
+.bg-icons div:nth-child(2){ top:18%; right:10%; animation-delay:3s; }
+.bg-icons div:nth-child(3){ top:38%; left:12%; animation-delay:6s; }
+.bg-icons div:nth-child(4){ top:56%; right:8%; animation-delay:1s; }
+.bg-icons div:nth-child(5){ top:72%; left:8%; animation-delay:4s; }
+.bg-icons div:nth-child(6){ top:84%; right:14%; animation-delay:7s; }
+
+@keyframes bgMove{
+0%{ transform:translateX(0); }
+100%{ transform:translateX(120px); }
+}
+
+@keyframes floatAir{
+0%{ transform:translateX(0) scaleX(0.95); opacity:0; }
+15%{ opacity:0.55; }
+85%{ opacity:0.55; }
+100%{ transform:translateX(120vw) scaleX(1.08); opacity:0; }
+}
+
+@keyframes floatIcon{
+0%,100%{ transform:translateY(0px) rotate(0deg); }
+50%{ transform:translateY(-12px) rotate(6deg); }
 }
 
 /* INTRO WITH INDOOR AC */
@@ -290,17 +393,42 @@ justify-content:space-between;
 flex-wrap:wrap;
 gap:10px;
 font-size:14px;
+backdrop-filter:blur(4px);
 }
 
 /* HEADER */
 header{
-background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url("ac-bg.jpg");
+background:
+linear-gradient(rgba(0,0,0,0.52),rgba(0,0,0,0.52)),
+radial-gradient(circle at center, rgba(0,180,255,0.18), transparent 40%),
+url("ac-bg.jpg");
 background-size:cover;
 background-position:center;
 text-align:center;
 color:white;
-padding:90px 20px;
+padding:95px 20px;
 animation:fadeDown 1s ease;
+position:relative;
+overflow:hidden;
+}
+
+header::before{
+content:"";
+position:absolute;
+left:-20%;
+top:12%;
+width:140%;
+height:60px;
+background:linear-gradient(to right, rgba(255,255,255,0), rgba(180,230,255,0.18), rgba(255,255,255,0));
+transform:rotate(-8deg);
+animation:heroAir 8s linear infinite;
+}
+
+@keyframes heroAir{
+0%{ transform:translateX(-10%) rotate(-8deg); opacity:0; }
+20%{ opacity:1; }
+80%{ opacity:1; }
+100%{ transform:translateX(10%) rotate(-8deg); opacity:0; }
 }
 
 header img{
@@ -311,16 +439,22 @@ background:white;
 padding:8px;
 box-shadow:0 4px 15px rgba(0,0,0,0.3);
 animation:zoomIn 1.2s ease;
+position:relative;
+z-index:1;
 }
 
 header h1{
 font-size:42px;
 margin-bottom:10px;
+position:relative;
+z-index:1;
 }
 
 header p{
 font-size:18px;
 margin-bottom:25px;
+position:relative;
+z-index:1;
 }
 
 .header-btn{
@@ -333,6 +467,8 @@ border-radius:30px;
 font-weight:bold;
 transition:0.3s;
 animation:pulseBtn 2s infinite;
+position:relative;
+z-index:1;
 }
 
 .header-btn:hover{
@@ -389,6 +525,16 @@ font-size:17px;
 line-height:1.8;
 }
 
+/* GLASS PANELS */
+.service-box,
+.pro-box,
+.review-box,
+.area-list span,
+.product-card{
+background:rgba(255,255,255,0.88);
+backdrop-filter:blur(6px);
+}
+
 /* SERVICES */
 .services{
 display:grid;
@@ -398,7 +544,6 @@ margin-top:25px;
 }
 
 .service-box{
-background:white;
 padding:25px 20px;
 border-radius:14px;
 text-align:center;
@@ -422,7 +567,6 @@ margin-top:25px;
 }
 
 .pro-box{
-background:white;
 padding:22px;
 border-radius:12px;
 box-shadow:0 4px 14px rgba(0,0,0,0.08);
@@ -449,7 +593,6 @@ margin-top:25px;
 }
 
 .review-box{
-background:white;
 padding:20px;
 border-radius:12px;
 box-shadow:0 4px 14px rgba(0,0,0,0.08);
@@ -477,7 +620,6 @@ margin-top:20px;
 }
 
 .area-list span{
-background:white;
 padding:12px 18px;
 border-radius:30px;
 box-shadow:0 4px 12px rgba(0,0,0,0.08);
@@ -535,6 +677,366 @@ transform:scale(1.08) rotate(-1deg);
 box-shadow:0 8px 18px rgba(0,0,0,0.25);
 }
 
+/* ANIMATED PRODUCTS */
+.products-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:24px;
+margin-top:25px;
+}
+
+.product-card{
+padding:22px;
+border-radius:18px;
+box-shadow:0 10px 24px rgba(0,0,0,0.10);
+text-align:center;
+transition:0.35s;
+position:relative;
+overflow:hidden;
+}
+
+.product-card:hover{
+transform:translateY(-8px);
+box-shadow:0 16px 30px rgba(0,0,0,0.14);
+}
+
+.product-card h3{
+margin-top:16px;
+color:#0a7cc2;
+font-size:22px;
+}
+
+.product-card p{
+margin-top:8px;
+line-height:1.6;
+font-size:15px;
+}
+
+.product-visual{
+height:170px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+
+/* Indoor AC */
+.indoor-demo{
+position:relative;
+width:190px;
+height:95px;
+}
+
+.indoor-main{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:58px;
+background:linear-gradient(to bottom,#ffffff,#dfe8ef);
+border-radius:16px 16px 10px 10px;
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
+border:1px solid #d5dde5;
+}
+
+.indoor-main::after{
+content:"";
+position:absolute;
+left:14px;
+right:36px;
+bottom:13px;
+height:5px;
+background:linear-gradient(to right,#dbe6ee,#f8fbfd,#dbe6ee);
+border-radius:20px;
+}
+
+.indoor-flap{
+position:absolute;
+left:8px;
+right:8px;
+top:52px;
+height:18px;
+background:linear-gradient(to bottom,#ffffff,#cfd9e1);
+border-radius:0 0 14px 14px;
+transform-origin:top center;
+animation:productFlap 1.8s ease-in-out infinite alternate;
+}
+
+.indoor-air{
+position:absolute;
+top:70px;
+left:14px;
+width:160px;
+height:50px;
+}
+
+.indoor-air span{
+position:absolute;
+width:100%;
+height:12px;
+border-radius:50%;
+background:linear-gradient(to right, rgba(10,124,194,0), rgba(10,124,194,0.25), rgba(10,124,194,0));
+animation:productAir 1.5s linear infinite;
+}
+
+.indoor-air span:nth-child(1){ top:0; }
+.indoor-air span:nth-child(2){ top:16px; animation-delay:0.25s; }
+.indoor-air span:nth-child(3){ top:32px; animation-delay:0.5s; }
+
+/* Outdoor AC */
+.outdoor-demo{
+position:relative;
+width:180px;
+height:110px;
+background:linear-gradient(to bottom,#ffffff,#dce5ec);
+border-radius:16px;
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
+border:1px solid #d5dde5;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.outdoor-fan{
+width:76px;
+height:76px;
+border:6px solid #9db5c5;
+border-radius:50%;
+position:relative;
+animation:fanSpin 1.6s linear infinite;
+}
+
+.outdoor-fan::before,
+.outdoor-fan::after{
+content:"";
+position:absolute;
+left:50%;
+top:50%;
+width:14px;
+height:56px;
+background:linear-gradient(to bottom,#8aa7bb,#d7e5ef);
+border-radius:30px;
+transform-origin:center center;
+margin-left:-7px;
+margin-top:-28px;
+}
+
+.outdoor-fan::before{
+transform:rotate(0deg);
+}
+
+.outdoor-fan::after{
+transform:rotate(90deg);
+}
+
+.fan-cross{
+position:absolute;
+left:50%;
+top:50%;
+width:14px;
+height:56px;
+background:linear-gradient(to bottom,#8aa7bb,#d7e5ef);
+border-radius:30px;
+transform-origin:center center;
+margin-left:-7px;
+margin-top:-28px;
+transform:rotate(45deg);
+}
+
+.fan-cross::after{
+content:"";
+position:absolute;
+left:0;
+top:0;
+width:14px;
+height:56px;
+background:linear-gradient(to bottom,#8aa7bb,#d7e5ef);
+border-radius:30px;
+transform:rotate(90deg);
+}
+
+.outdoor-led{
+position:absolute;
+right:14px;
+top:14px;
+width:10px;
+height:10px;
+background:#25D366;
+border-radius:50%;
+box-shadow:0 0 10px rgba(37,211,102,0.8);
+animation:blinkLed 1s infinite;
+}
+
+/* Split AC */
+.split-demo{
+position:relative;
+width:190px;
+height:115px;
+}
+
+.split-top{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:54px;
+background:linear-gradient(to bottom,#ffffff,#dbe5ec);
+border-radius:16px;
+box-shadow:0 8px 16px rgba(0,0,0,0.12);
+}
+
+.split-top::after{
+content:"";
+position:absolute;
+left:15px;
+right:34px;
+bottom:12px;
+height:5px;
+background:linear-gradient(to right,#dbe6ee,#f8fbfd,#dbe6ee);
+border-radius:20px;
+}
+
+.split-bottom{
+position:absolute;
+right:8px;
+bottom:0;
+width:78px;
+height:52px;
+background:linear-gradient(to bottom,#ffffff,#dce5ec);
+border-radius:12px;
+box-shadow:0 8px 16px rgba(0,0,0,0.12);
+display:flex;
+align-items:center;
+justify-content:center;
+animation:splitGlow 2s ease-in-out infinite;
+}
+
+.split-bottom .mini-fan{
+width:34px;
+height:34px;
+border:4px solid #9db5c5;
+border-radius:50%;
+position:relative;
+animation:fanSpin 1.8s linear infinite;
+}
+
+.split-bottom .mini-fan::before,
+.split-bottom .mini-fan::after{
+content:"";
+position:absolute;
+left:50%;
+top:50%;
+width:8px;
+height:24px;
+background:#8aa7bb;
+border-radius:20px;
+margin-left:-4px;
+margin-top:-12px;
+}
+
+.split-bottom .mini-fan::after{
+transform:rotate(90deg);
+}
+
+.split-air{
+position:absolute;
+left:12px;
+top:58px;
+width:118px;
+height:44px;
+}
+
+.split-air span{
+position:absolute;
+width:100%;
+height:10px;
+border-radius:50%;
+background:linear-gradient(to right, rgba(10,124,194,0), rgba(10,124,194,0.25), rgba(10,124,194,0));
+animation:productAir 1.4s linear infinite;
+}
+
+.split-air span:nth-child(1){ top:0; }
+.split-air span:nth-child(2){ top:14px; animation-delay:0.2s; }
+.split-air span:nth-child(3){ top:28px; animation-delay:0.4s; }
+
+/* Home appliance */
+.appliance-demo{
+position:relative;
+width:160px;
+height:130px;
+background:linear-gradient(to bottom,#ffffff,#dce5ec);
+border-radius:16px;
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
+display:flex;
+align-items:center;
+justify-content:center;
+animation:appliancePulse 2s ease-in-out infinite;
+}
+
+.appliance-screen{
+width:92px;
+height:54px;
+background:linear-gradient(135deg,#0a7cc2,#8fe0ff);
+border-radius:10px;
+box-shadow:inset 0 0 12px rgba(255,255,255,0.4), 0 0 16px rgba(10,124,194,0.25);
+position:relative;
+overflow:hidden;
+}
+
+.appliance-screen::before{
+content:"";
+position:absolute;
+left:-100%;
+top:0;
+width:100%;
+height:100%;
+background:linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
+animation:screenShine 2.4s linear infinite;
+}
+
+.appliance-dot{
+position:absolute;
+bottom:14px;
+right:14px;
+width:10px;
+height:10px;
+background:#25D366;
+border-radius:50%;
+box-shadow:0 0 10px rgba(37,211,102,0.8);
+animation:blinkLed 1s infinite;
+}
+
+@keyframes productFlap{
+0%{ transform:rotateX(-18deg); }
+100%{ transform:rotateX(-55deg); }
+}
+
+@keyframes productAir{
+0%{ transform:translateX(0); opacity:0.2; }
+50%{ transform:translateX(8px); opacity:0.8; }
+100%{ transform:translateX(0); opacity:0.2; }
+}
+
+@keyframes fanSpin{
+0%{ transform:rotate(0deg); }
+100%{ transform:rotate(360deg); }
+}
+
+@keyframes splitGlow{
+0%,100%{ box-shadow:0 8px 16px rgba(0,0,0,0.12); }
+50%{ box-shadow:0 8px 18px rgba(10,124,194,0.28); }
+}
+
+@keyframes appliancePulse{
+0%,100%{ transform:scale(1); }
+50%{ transform:scale(1.03); }
+}
+
+@keyframes screenShine{
+0%{ left:-100%; }
+100%{ left:120%; }
+}
+
 /* POPUP */
 .popup{
 display:none;
@@ -564,6 +1066,28 @@ background:linear-gradient(135deg,#0a7cc2,#033c5c);
 color:white;
 text-align:center;
 padding:50px 20px;
+position:relative;
+overflow:hidden;
+}
+
+.cta-section::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.08), rgba(255,255,255,0));
+animation:ctaWave 7s linear infinite;
+}
+
+@keyframes ctaWave{
+0%{ transform:translateX(-100%); }
+100%{ transform:translateX(100%); }
+}
+
+.cta-section h2,
+.cta-section p,
+.cta-section a{
+position:relative;
+z-index:1;
 }
 
 .cta-section h2{
@@ -594,7 +1118,7 @@ background:#1ebe5d;
 
 /* CONTACT */
 .contact{
-background:#0a7cc2;
+background:linear-gradient(135deg,#0a7cc2,#0970ae);
 color:white;
 text-align:center;
 padding:55px 20px;
@@ -669,6 +1193,9 @@ gap:20px;
 .footer-box{
 flex:1;
 min-width:220px;
+padding:8px;
+background:transparent;
+backdrop-filter:none;
 }
 
 .footer-box h3{
@@ -751,10 +1278,36 @@ font-size:24px;
 width:300px;
 height:145px;
 }
+
+.bg-air span{
+width:240px;
+}
+
+.product-visual{
+height:150px;
+}
 }
 </style>
 </head>
 <body>
+
+<div class="bg-air">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="bg-icons">
+    <div>❄️</div>
+    <div>🌬️</div>
+    <div>❄️</div>
+    <div>🌬️</div>
+    <div>❄️</div>
+    <div>🌬️</div>
+</div>
 
 <!-- INTRO -->
 <div class="intro">
@@ -805,6 +1358,7 @@ height:145px;
     <a href="#why-us">Why Us</a>
     <a href="#feedback">Feedback</a>
     <a href="#gallery">Gallery</a>
+    <a href="#products">Products</a>
     <a href="#contact">Contact</a>
 </nav>
 
@@ -906,6 +1460,70 @@ height:145px;
     </div>
 </section>
 
+<!-- ANIMATED PRODUCTS -->
+<section class="container" id="products">
+    <h2>Running Products & Appliances</h2>
+    <div class="products-grid">
+        <div class="product-card">
+            <div class="product-visual">
+                <div class="indoor-demo">
+                    <div class="indoor-main"></div>
+                    <div class="indoor-flap"></div>
+                    <div class="indoor-air">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <h3>Indoor AC</h3>
+            <p>Running indoor AC animation with open flap and cool air flow effect.</p>
+        </div>
+
+        <div class="product-card">
+            <div class="product-visual">
+                <div class="outdoor-demo">
+                    <div class="outdoor-fan">
+                        <div class="fan-cross"></div>
+                    </div>
+                    <div class="outdoor-led"></div>
+                </div>
+            </div>
+            <h3>Outdoor Unit</h3>
+            <p>Outdoor AC unit with spinning fan animation to show active cooling.</p>
+        </div>
+
+        <div class="product-card">
+            <div class="product-visual">
+                <div class="split-demo">
+                    <div class="split-top"></div>
+                    <div class="split-air">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="split-bottom">
+                        <div class="mini-fan"></div>
+                    </div>
+                </div>
+            </div>
+            <h3>Split AC</h3>
+            <p>Split AC system animation with cool air flow and glowing outdoor effect.</p>
+        </div>
+
+        <div class="product-card">
+            <div class="product-visual">
+                <div class="appliance-demo">
+                    <div class="appliance-screen"></div>
+                    <div class="appliance-dot"></div>
+                </div>
+            </div>
+            <h3>Home Appliances</h3>
+            <p>Running home appliance animation with glowing display and power-on light.</p>
+        </div>
+    </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section">
     <h2>Need AC Repair or Installation Today?</h2>
@@ -957,6 +1575,7 @@ height:145px;
             <p><a href="#services">Services</a></p>
             <p><a href="#feedback">Feedback</a></p>
             <p><a href="#gallery">Gallery</a></p>
+            <p><a href="#products">Products</a></p>
             <p><a href="#contact">Contact</a></p>
         </div>
 
