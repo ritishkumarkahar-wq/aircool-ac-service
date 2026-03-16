@@ -1,113 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Cool AC Service</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; scroll-behavior: smooth; }
-        body { background: #f4f8fb; color: #222; overflow-x: hidden; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animated Appliances Banner</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* =========================
-           INTRO ANIMATION SECTION
-        ========================= */
-        .intro {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #eaf6ff, #ffffff);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 10000; overflow: hidden;
-            animation: introHide 6s forwards; /* 6 second baad intro gayab ho jayega */
-        }
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0d1117;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
 
-        .intro-inner { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+    .banner {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      aspect-ratio: 16 / 6;
+      overflow: hidden;
+      border-radius: 18px;
+      background: linear-gradient(to bottom, #13c7cf 0%, #0a9fe8 65%, #066ad1 100%);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
 
-        /* AC INDOOR UNIT DESIGN */
-        .ac-unit {
-            position: relative; width: 360px; max-width: 88vw; height: 150px;
-            perspective: 1000px; animation: acFloat 2.2s ease-in-out infinite;
-        }
-        .ac-body {
-            position: absolute; top: 0; left: 0; width: 100%; height: 90px;
-            background: linear-gradient(to bottom, #ffffff, #dfe8ef);
-            border-radius: 20px 20px 12px 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid #d9e2ea; overflow: hidden;
-        }
-        .ac-brand { position: absolute; left: 18px; top: 14px; font-size: 14px; font-weight: bold; color: #0a7cc2; }
-        .ac-led {
-            position: absolute; right: 18px; top: 16px; width: 10px; height: 10px;
-            background: #25D366; border-radius: 50%; animation: blinkLed 1s infinite;
-        }
-        .ac-flapper {
-            position: absolute; left: 12px; right: 12px; top: 82px; height: 26px;
-            background: linear-gradient(to bottom, #fdfdfd, #cdd7df);
-            border-radius: 0 0 18px 18px; transform-origin: top center;
-            animation: openFlapper 1.8s ease forwards; animation-delay: 0.8s;
-        }
-
-        /* AIR FLOW ANIMATION */
-        .air-flow {
-            position: absolute; top: 108px; left: 20px; width: 320px; height: 70px;
-            opacity: 0; animation: showAir 1.5s ease forwards; animation-delay: 1.8s;
-        }
-        .air-wave {
-            width: 100%; height: 10px; margin-bottom: 10px; border-radius: 50%;
-            background: rgba(10, 124, 194, 0.1); animation: waveMove 1.2s linear infinite;
-        }
-
-        /* LOGO PART */
-        .intro-logo-box {
-            text-align: center; opacity: 0;
-            animation: showLogoBox 1.2s ease forwards; animation-delay: 3s;
-        }
-        .intro-logo-box h1 { color: #0a7cc2; font-size: 32px; margin-top: 10px; }
-
-        /* KEYFRAMES */
-        @keyframes openFlapper { 100% { transform: rotateX(-60deg); } }
-        @keyframes showAir { 100% { opacity: 1; } }
-        @keyframes introHide { 0% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
-        @keyframes showLogoBox { 100% { opacity: 1; transform: translateY(0); } }
-        @keyframes blinkLed { 50% { opacity: 0.3; } }
-        @keyframes waveMove { 0% { transform: scaleX(0.9); } 50% { transform: scaleX(1.1); } 100% { transform: scaleX(0.9); } }
-
-        /* MAIN CONTENT (Website after intro) */
-        .main-content { padding: 50px 20px; text-align: center; }
-        .btn-whatsapp {
-            background: #25D366; color: white; padding: 15px 30px; text-decoration: none;
-            border-radius: 50px; font-weight: bold; display: inline-block; margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="intro">
-        <div class="intro-inner">
-            <div class="ac-unit">
-                <div class="ac-body">
-                    <div class="ac-brand">AIR COOL</div>
-                    <div class="ac-led"></div>
-                </div>
-                <div class="ac-flapper"></div>
-                <div class="air-flow">
-                    <div class="air-wave"></div>
-                    <div class="air-wave"></div>
-                </div>
-            </div>
-
-            <div class="intro-logo-box">
-                <h1>AIR COOL</h1>
-                <p>Authorized Service Provider</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="main-content">
-        <h2>Welcome to Air Cool Services</h2>
-        <p>Expert Split & Window AC Repair, Installation, and Service.</p>
-        <br>
-        <p>Authorized Service for Lloyd, Havells, and more.</p>
-        
-        <a href="https://wa.me/91XXXXXXXXXX" class="btn-whatsapp">WhatsApp Now for Booking</a>
-    </div>
-
-</body>
-</html>
+    .ground {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 12%;
+      background: linear-gradient(to top, rgba(0, 55, 140, 0.6), rgba(255,255,255,0.05));
+    }
