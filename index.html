@@ -33,7 +33,15 @@ justify-content:center;
 align-items:center;
 z-index:10000;
 overflow:hidden;
-animation:introHide 6s forwards;
+opacity:1;
+visibility:visible;
+transition:opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.intro.hide{
+opacity:0;
+visibility:hidden;
+pointer-events:none;
 }
 
 .intro-inner{
@@ -180,18 +188,6 @@ transform:translateY(0) scale(1);
 @keyframes logoPulse{
 0%,100%{ transform:scale(1); }
 50%{ transform:scale(1.04); }
-}
-
-@keyframes introHide{
-0%,88%{
-opacity:1;
-visibility:visible;
-}
-100%{
-opacity:0;
-visibility:hidden;
-pointer-events:none;
-}
 }
 
 @keyframes fadeDown{
@@ -1367,7 +1363,7 @@ font-size:24px;
 <body>
 
 <!-- INTRO -->
-<div class="intro">
+<div class="intro" id="introLoader">
     <div class="intro-inner">
         <div class="ac-unit">
             <div class="ac-body">
@@ -1739,6 +1735,18 @@ gallery.addEventListener("touchstart", () => {
 
 gallery.addEventListener("touchend", () => {
     gallery.classList.remove("paused");
+});
+
+window.addEventListener("load", function(){
+    const intro = document.getElementById("introLoader");
+    if(intro){
+        setTimeout(() => {
+            intro.classList.add("hide");
+            setTimeout(() => {
+                intro.remove();
+            }, 900);
+        }, 3200);
+    }
 });
 </script>
 
